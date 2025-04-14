@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 
     // Roles
     Route::resource('roles', RoleController::class)->except(['show']);
+    Route::resource('users', UserController::class);
 
     // User Role Management
     Route::get('/user-role', [UserRolePermissionController::class, 'index'])->name('user-role.index');
@@ -51,3 +52,22 @@ Route::middleware('auth')->group(function () {
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

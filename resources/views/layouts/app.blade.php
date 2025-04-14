@@ -238,7 +238,7 @@
                 <span>Dashboard</span>
             </a>
             <a href="{{ route('users.index') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i>
+            <i class="fas fa-users"></i>
                 <span>Manage Users</span>
             </a>
             <a href="{{ route('books.index') }}" class="{{ request()->routeIs('books.*') ? 'active' : '' }}">
