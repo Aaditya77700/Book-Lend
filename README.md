@@ -243,4 +243,12 @@ Visit http://localhost:8000 to start using your Book Lending System.
    ```bash
    git clone https://github.com/Aaditya77700/demo-app.git
    cd book-lending-system
- ```
+     ```
+
+## 🤝 Contributing
+Contributions are welcome! Please fork this repository and submit a pull request.
+     ```
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+    ```
+
