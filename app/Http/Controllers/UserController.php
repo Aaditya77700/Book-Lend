@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+
 
 class UserController extends Controller
 {
@@ -24,27 +27,45 @@ class UserController extends Controller
     }
 
     // Store a new user
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'role'     => 'nullable|exists:roles,name',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'name'     => 'required|string|max:255',
+    //         'email'    => 'required|email|unique:users',
+    //         'password' => 'required|string|min:6|confirmed',
+    //         'role'     => 'nullable|exists:roles,name',
+    //     ]);
 
-        $user = User::create([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
+    //     $user = User::create([
+    //         'name'     => $validated['name'],
+    //         'email'    => $validated['email'],
+    //         'password' => bcrypt($validated['password']),
+    //     ]);
 
-        if ($validated['role']) {
-            $user->assignRole($validated['role']);
-        }
+    //     if ($validated['role']) {
+    //         $user->assignRole($validated['role']);
+    //     }
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+    //     return redirect()->route('users.index')->with('success', 'User created successfully.');
+    // }
+
+
+    public function store(StoreUserRequest $request)
+{
+    $validated = $request->validated();
+
+    $user = User::create([
+        'name'     => $validated['name'],
+        'email'    => $validated['email'],
+        'password' => bcrypt($validated['password']),
+    ]);
+
+    if (!empty($validated['role'])) {
+        $user->assignRole($validated['role']);
     }
+
+    return redirect()->route('users.index')->with('success', 'User created successfully.');
+}
 
     // Show form to edit user
     public function edit(User $user)
@@ -54,27 +75,45 @@ class UserController extends Controller
     }
 
     // Update user
-    public function update(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
-            'role'     => 'nullable|exists:roles,name',
-        ]);
+    // public function update(Request $request, User $user)
+    // {
+    //     $validated = $request->validate([
+    //         'name'     => 'required|string|max:255',
+    //         'email'    => 'required|email|unique:users,email,' . $user->id,
+    //         'password' => 'nullable|string|min:6|confirmed',
+    //         'role'     => 'nullable|exists:roles,name',
+    //     ]);
 
-        $user->update([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => $validated['password'] ? bcrypt($validated['password']) : $user->password,
-        ]);
+    //     $user->update([
+    //         'name'     => $validated['name'],
+    //         'email'    => $validated['email'],
+    //         'password' => $validated['password'] ? bcrypt($validated['password']) : $user->password,
+    //     ]);
 
-        if ($validated['role']) {
-            $user->syncRoles([$validated['role']]);
-        }
+    //     if ($validated['role']) {
+    //         $user->syncRoles([$validated['role']]);
+    //     }
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+    //     return redirect()->route('users.index')->with('success', 'User updated successfully.');
+    // }
+
+
+    public function update(UpdateUserRequest $request, User $user)
+{
+    $validated = $request->validated();
+
+    $user->update([
+        'name'     => $validated['name'],
+        'email'    => $validated['email'],
+        'password' => !empty($validated['password']) ? bcrypt($validated['password']) : $user->password,
+    ]);
+
+    if (!empty($validated['role'])) {
+        $user->syncRoles([$validated['role']]);
     }
+
+    return redirect()->route('users.index')->with('success', 'User updated successfully.');
+}
 
     // Delete user
     public function destroy(User $user)
@@ -94,31 +133,7 @@ class UserController extends Controller
          return view('users.borrowings', compact('user'));
      }
  
-     // Reset password (basic version - for demo)
-     public function resetPassword(Request $request, $id)
-     {
-         $request->validate([
-             'new_password' => 'required|string|min:6|confirmed',
-         ]);
- 
-         $user = User::findOrFail($id);
-         $user->password = Hash::make($request->new_password);
-         $user->save();
- 
-         return back()->with('success', 'Password reset successfully.');
-     }
- 
-     // Toggle user activation
-     public function toggleActivation($id)
-     {
-         $user = User::findOrFail($id);
-         $user->is_active = !$user->is_active;
-         $user->save();
- 
-         return back()->with('success', 'User status updated.');
-     }
-
-    // In app/Http/Controllers/UserController.php
+    
 
 public function show(User $user)
 {

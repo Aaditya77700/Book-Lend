@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@role('member')
 @section('content')
 <div class="container">
     <h2>📚 My Borrowed Books</h2>
@@ -38,3 +38,4 @@
     </table>
 </div>
 @endsection
+@endrole

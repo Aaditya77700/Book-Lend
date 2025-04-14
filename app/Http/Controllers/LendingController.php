@@ -6,6 +6,8 @@ use App\Models\Book;
 use App\Models\LendingRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreLendingRequest;
+
 
 class LendingController extends Controller
 {
@@ -26,32 +28,55 @@ class LendingController extends Controller
     }
 
     // Store a new lending record
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'book_id' => 'required|exists:books,id',
-            'user_id' => 'required|exists:users,id',
-            'due_at' => 'required|date|after:today',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'book_id' => 'required|exists:books,id',
+    //         'user_id' => 'required|exists:users,id',
+    //         'due_at' => 'required|date|after:today',
+    //     ]);
 
-        $book = Book::findOrFail($validated['book_id']);
+    //     $book = Book::findOrFail($validated['book_id']);
 
-        if ($book->available_copies <= 0) {
-            return back()->withErrors(['book_id' => 'No available copies left.']);
-        }
+    //     if ($book->available_copies <= 0) {
+    //         return back()->withErrors(['book_id' => 'No available copies left.']);
+    //     }
 
-        LendingRecord::create([
-            'book_id' => $validated['book_id'],
-            'user_id' => $validated['user_id'],
-            'due_at' => $validated['due_at'],
-            'borrowed_at' => now(),
-            'returned_at' => null,
-        ]);
+    //     LendingRecord::create([
+    //         'book_id' => $validated['book_id'],
+    //         'user_id' => $validated['user_id'],
+    //         'due_at' => $validated['due_at'],
+    //         'borrowed_at' => now(),
+    //         'returned_at' => null,
+    //     ]);
 
-        $book->decrement('available_copies');
+    //     $book->decrement('available_copies');
 
-        return redirect()->route('lendings.index')->with('success', 'Book lent successfully.');
+    //     return redirect()->route('lendings.index')->with('success', 'Book lent successfully.');
+    // }
+
+    public function store(StoreLendingRequest $request)
+{
+    $validated = $request->validated();
+
+    $book = Book::findOrFail($validated['book_id']);
+
+    if ($book->available_copies <= 0) {
+        return back()->withErrors(['book_id' => 'No available copies left.']);
     }
+
+    LendingRecord::create([
+        'book_id'     => $validated['book_id'],
+        'user_id'     => $validated['user_id'],
+        'due_at'      => $validated['due_at'],
+        'borrowed_at' => now(),
+        'returned_at' => null,
+    ]);
+
+    $book->decrement('available_copies');
+
+    return redirect()->route('lendings.index')->with('success', 'Book lent successfully.');
+}
 
     // Mark a book as returned
     public function returnBook(LendingRecord $lending)

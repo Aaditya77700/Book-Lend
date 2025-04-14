@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@hasanyrole('admin|librarian')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow-sm">
@@ -163,9 +163,10 @@
                 </table>
             </div>
             
-            <div class="d-flex justify-content-end mt-3">
-                {{ $books->links() }}
-            </div>
+            <div class="d-flex justify-content-center mt-3">
+    {{ $books->links('pagination::bootstrap-5') }}
+</div>
+
         </div>
     </div>
 </div>
@@ -272,3 +273,4 @@
     });
 </script>
 @endsection
+@endhasanyrole

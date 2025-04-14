@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
+@hasanyrole('admin|librarian')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow-sm">
         <div class="card-header bg-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0"><i class="fas fa-users me-2"></i>User Management</h5>
+            @can('manage books')
             <a href="{{ route('users.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus me-1"></i> Add User
             </a>
+            @endcan
         </div>
         
         <div class="card-body">
@@ -114,12 +117,15 @@
                                     <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
+                                    @can('manage books')
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    @endcan
                                 </div>
                                 
                                 <!-- User Quick Actions Dropdown -->
@@ -284,3 +290,4 @@
     });
 </script>
 @endsection
+@endhasanyrole

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@hasanyrole('admin|librarian')
 @section('content')
 <div class="container-fluid">
     <div class="card shadow-sm">
@@ -394,3 +394,4 @@
     });
 </script>
 @endsection
+@endhasanyrole

@@ -6,6 +6,8 @@
     <title>Book Lending Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
     <style>
         :root {
             --primary: #4361ee;
@@ -206,11 +208,11 @@
                 transform: translateX(0);
             }
         }
-    </style>
+        </style>
 </head>
 <body>
-
-@if(request()->is('login') || request()->is('register'))
+    
+    @if(request()->is('login') || request()->is('register'))
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-logo">
@@ -221,23 +223,23 @@
         </div>
     </div>
 @else
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
                 <i class="fas fa-book-open"></i>
                 <span>Library Admin</span>
             </a>
         </div>
         
         <div class="mt-4">
-            <a href="{{ route('users.index') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>users</span>
-            </a>
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
+            </a>
+            <a href="{{ route('users.index') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Manage Users</span>
             </a>
             <a href="{{ route('books.index') }}" class="{{ request()->routeIs('books.*') ? 'active' : '' }}">
                 <i class="fas fa-book"></i>
@@ -260,7 +262,7 @@
                 <span>Permissions</span>
             </a>
             <a href="{{ route('lendings.mine') }}" class="{{ request()->routeIs('permissions.*') ? 'active' : '' }}">
-            <i class="fas fa-book-reader"></i>
+                <i class="fas fa-book-reader"></i>
                 <span>My Borrowed Books</span>
             </a>
         </div>
@@ -274,7 +276,7 @@
             </form>
         </div>
     </div>
-
+    
     <!-- Main Content -->
     <div class="content-wrapper">
         <nav class="top-navbar">
@@ -284,28 +286,28 @@
             
             <div class="nav-user">
                 @auth
-                    <div class="user-avatar">
-                        {{ substr(Auth::user()->name, 0, 1) }}
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">{{ Auth::user()->name }}</span>
-                        <span class="user-role">{{ Auth::user()->getRoleNames()->implode(', ') }}</span>
-                    </div>
+                <div class="user-avatar">
+                    {{ substr(Auth::user()->name, 0, 1) }}
+                </div>
+                <div class="user-info">
+                    <span class="user-name">{{ Auth::user()->name }}</span>
+                    <span class="user-role">{{ Auth::user()->getRoleNames()->implode(', ') }}</span>
+                </div>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary">Login</a>
+                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary">Login</a>
                 @endauth
             </div>
         </nav>
-
+        
         <main class="main-content">
             <div class="container-fluid">
                 @yield('content')
             </div>
         </main>
     </div>
-@endif
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    @endif
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -318,5 +320,6 @@
         }
     });
 </script>
+    @stack('scripts')
 </body>
 </html>

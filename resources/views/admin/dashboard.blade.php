@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+@hasanyrole('admin|librarian')
 @section('content')
 <div class="container py-5">
     <h2 class="mb-5 fw-bold text-primary">📊 Admin Dashboard</h2>
@@ -87,3 +89,5 @@
     </div>
 </div>
 @endsection
+@endhasanyrole
+

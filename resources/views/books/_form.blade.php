@@ -1,21 +1,25 @@
 <div class="mb-3">
     <label>Title</label>
-    <input type="text" name="title" class="form-control" value="{{ old('title', $book->title) }}" required>
+    <input type="text" name="title" class="form-control" value="{{ old('title', $book->title) }}" required minlength="3" maxlength="255">
+    <div class="invalid-feedback">Please provide a valid title (between 3 and 255 characters).</div>
 </div>
 
 <div class="mb-3">
     <label>Author</label>
-    <input type="text" name="author" class="form-control" value="{{ old('author', $book->author) }}" required>
+    <input type="text" name="author" class="form-control" value="{{ old('author', $book->author) }}" required minlength="3" maxlength="255">
+    <div class="invalid-feedback">Please provide a valid author name (between 3 and 255 characters).</div>
 </div>
 
 <div class="mb-3">
     <label>ISBN</label>
-    <input type="text" name="isbn" class="form-control" value="{{ old('isbn', $book->isbn) }}" required>
+    <input type="text" name="isbn" class="form-control" value="{{ old('isbn', $book->isbn) }}" required pattern="\d{13}">
+    <div class="invalid-feedback">Please provide a valid ISBN (13 digits only).</div>
 </div>
 
 <div class="mb-3">
     <label>Total Copies</label>
-    <input type="number" name="total_copies" class="form-control" value="{{ old('total_copies', $book->total_copies) }}" required>
+    <input type="number" name="total_copies" class="form-control" value="{{ old('total_copies', $book->total_copies) }}" required min="1">
+    <div class="invalid-feedback">Please provide a valid number of copies (at least 1).</div>
 </div>
 
 <div class="mb-3">

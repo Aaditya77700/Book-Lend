@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@role('admin')
 @section('content')
 <div class="container">
     <h3>User Role & Permission Management</h3>
@@ -36,3 +36,4 @@
     </table>
 </div>
 @endsection
+@endrole
