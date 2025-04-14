@@ -1,7 +1,55 @@
 <!-- resources/views/auth/login.blade.php -->
 @extends('layouts.auth')
 
+
+
+
+ <!-- Tailwind CSS (via Vite or CDN fallback) -->
+ @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+    @endif
+
+
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="w-full px-6 py-4 ">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-semibold tracking-tight">
+                <i class="bi bi-book-half text-indigo-600 me-2"></i> Book Lending System
+            </h1>
+
+            <nav class="flex gap-2">
+                @auth
+                    <a href="{{ url('/dashboard') }}"
+                       class="px-4 py-2 text-sm font-medium rounded border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
+                        Log in
+                    </a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}"
+                           class="px-4 py-2 text-sm font-medium rounded border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            Register
+                        </a>
+                    @endif
+                @endauth
+            </nav>
+        </div>
+    </header>
+
+
+    
 @section('content')
+
+
+
 <div class="row auth-card g-0">
     <!-- Left side - Book illustration -->
     <div class="col-md-5 auth-sidebar">
