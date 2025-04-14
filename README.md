@@ -1,66 +1,246 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Book Lending System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern web-based Book Lending System built with Laravel and Tailwind CSS. This system allows administrators to manage users and books, track borrowings and returns, and provides a user-friendly interface for library members to request and return books.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Introduction
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**BookLend** The Book Lending System is a full-featured Laravel web application that allows users to borrow books, manage returns, and track records with ease. It includes an intuitive admin dashboard, user management, and access control using Laravel Passport and Spatie Permission.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Whether you're running a small community library or just organizing your personal collection, BookLend simplifies the lending process with ease and style.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- ✅ Authentication with Laravel Passport
+- ✅ Role & Permission Management using Spatie
+- ✅ Responsive Admin Dashboard
+- ✅ User Management (create, update, suspend, delete)
+- ✅ Book Inventory Management (add, update, remove books)
+- ✅ Borrowing System (borrow/return tracking with dates)
+- ✅ Search, Sort & Filter
+- ✅ Notification system with Toastr
+- ✅ Fully mobile responsive (Tailwind CSS)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🛠️ Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Technology       | Description                               |
+|------------------|-------------------------------------------|
+| **Laravel 10+**  | PHP framework for backend and routing     |
+| **Laravel Passport** | API authentication system           |
+| **Spatie Permission** | Role-based access control           |
+| **Livewire**     | Reactive components without JS            |
+| **Tailwind CSS** | Utility-first CSS framework               |
+| **Bootstrap Icons** | Beautiful icon system                 |
+| **Vite**         | Fast asset bundling                       |
+| **MySQL**        | Database                                 |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🖼️ Screenshots
 
-## Contributing
+### 📌 Login Page
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![Login Screenshot](public/images-ss/login.png)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 📌 Register Page
 
-## Security Vulnerabilities
+![Register Screenshot](public/images-ss/register.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 📌 Dashboard (Admin View)
+
+![Dashboard Screenshot](public/images-ss/admin_dashboard.png)
+
+---
+
+### 📌 Manage Books
+
+![Books Screenshot](public/images-ss/Books_CRUD.png)
+
+---
+
+### 📌 Borrowing Tracker
+
+![Borrow Screenshot](public/images-ss/Lending_CRUD.png)
+
+---
+
+### 📌 Access Control
+
+![Borrow Screenshot](public/images-ss/Permission.png)
+
+---
+
+### 📌 Role Management
+
+![Borrow Screenshot](public/images-ss/Role.png)
+
+---
+
+## 📁 Full Project Structure
+
+```text
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Api/
+│   │   │   └── Web/
+│   │   │       ├── AdminDashboardController.php
+│   │   │       ├── AuthFormController.php
+│   │   │       ├── BookController.php
+│   │   │       ├── Controller.php
+│   │   │       ├── DashboardController.php
+│   │   │       ├── LendingController.php
+│   │   │       ├── RoleController.php
+│   │   │       ├── UserController.php
+│   │   │       └── UserRolePermissionController.php
+│   │   ├── Requests/
+│   │   │   ├── LoginRequest.php
+│   │   │   ├── RegisterRequest.php
+│   │   │   ├── StoreBookRequest.php
+│   │   │   ├── StoreLendingRequest.php
+│   │   │   ├── StoreUserRequest.php
+│   │   │   ├── UpdateBookRequest.php
+│   │   │   └── UpdateUserRequest.php
+│   ├── Models/
+│   │   ├── Book.php
+│   │   ├── LendingRecord.php
+│   │   └── User.php
+│   └── Providers/
+│       └── AppServiceProvider.php
+
+├── bootstrap/
+├── config/
+
+├── database/
+│   ├── factories/
+│   │   ├── BookFactory.php
+│   │   ├── LendingRecordFactory.php
+│   │   └── UserFactory.php
+│   ├── migrations/
+│   └── seeders/
+│       ├── BookSeeder.php
+│       ├── DatabaseSeeder.php
+│       ├── LendingRecordSeeder.php
+│       └── RolePermissionSeeder.php
+
+├── public/
+
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+│       ├── admin/
+│       │   ├── roles/
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   └── index.blade.php
+│       │   └── user_roles/
+│       │       ├── dashboard.blade.php
+│       │       ├── edit.blade.php
+│       │       └── index.blade.php
+│       ├── auth/
+│       │   ├── login.blade.php
+│       │   └── register.blade.php
+│       ├── books/
+│       │   ├── _form.blade.php
+│       │   ├── create.blade.php
+│       │   ├── edit.blade.php
+│       │   └── index.blade.php
+│       ├── layouts/
+│       │   ├── app.blade.php
+│       │   └── auth.blade.php
+│       ├── lendings/
+│       │   ├── create.blade.php
+│       │   ├── index.blade.php
+│       │   └── my_books.blade.php
+│       ├── users/
+│       │   ├── borrowings.blade.php
+│       │   ├── create.blade.php
+│       │   ├── edit.blade.php
+│       │   ├── index.blade.php
+│       │   └── show.blade.php
+│       └── welcome.blade.php
+
+├── routes/
+│   ├── api.php
+│   ├── console.php
+│   └── web.php
+
+├── storage/
+│   ├── app/
+│   ├── framework/
+│   ├── logs/
+│   ├── oauth-private.key
+│   └── oauth-public.key
+
+├── tests/
+├── vendor/
+
+├── .editorconfig
+├── .env
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── artisan
+├── composer.json
+├── composer.lock
+└── README.md
+  ```
+
+## 📦 Installation
+
+**Clone the repository**
+ ```bash
+git clone https://github.com/Aaditya77700/demo-app.git
+cd book-lending-system
+ ```
+**Install dependencies**
+ ```bash
+composer install
+npm install && npm run dev
+ ```
+**Set up your environment**
+ ```bash
+cp .env.example .env
+php artisan key:generate
+ ```
+**Configure database in .env file**
+**Edit your .env file with these database credentials**
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=book_lending_db
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+ 
+**Run migrations**
+ ```bash
+php artisan migrate
+ ```
+**Install and configure Laravel Passport**
+ ```bash
+composer require laravel/passport
+php artisan migrate
+php artisan passport:install
+php artisan passport:client --personal
+ ```
+**Serve the application**
+ ```bash
+php artisan serve
+Visit http://localhost:8000 to start using your Book Lending System.
+ ```
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/Aaditya77700/demo-app.git
+   cd book-lending-system
+ ```
